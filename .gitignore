@@ -1,0 +1,10 @@
+
+backend/env/Lib/
+
+backend/env/Scripts/
+
+backend/__pycache__/
+
+backend/env/
+
+frontend/hackathon3000/.eslintcache
