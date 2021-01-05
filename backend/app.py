@@ -1,5 +1,6 @@
 from flask import Flask
 from datetime import datetime
+import time
 import re
 
 app = Flask(__name__)
@@ -8,6 +9,10 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     return "Hello, Flask"
+
+@app.route('/time')
+def get_current_time():
+    return {'time': time.time()}
 
 @app.route("/hello/<name>")
 def hello_there(name):
