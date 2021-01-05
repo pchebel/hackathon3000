@@ -5,15 +5,17 @@ function Test() {
 
 
 /**
- * Si on ajoute 
+ * Dans package.json, la ligne:
  *  "proxy": "http://localhost:5000/"
- * 
- *  On peut mettre:
- *  fetch('http://localhost:5000/time')
+ * permet à fetch d'effectuer la requete au bon endroit
+ *  
+ *  
  */
 
     useEffect(() => {
-        fetch('http://localhost:5000/time').then(res => res.json()).then(data => {
+        fetch('/time').then(res => res.json()).then(data => {
+
+          console.log(data);
           setCurrentTime(data.time);
         });
       }, []);
