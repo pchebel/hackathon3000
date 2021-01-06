@@ -5,6 +5,7 @@
     "prettier/prettier": ["error"]
   },
   "globals": {
-    "fetch": false
+    "fetch": false,
+    "FormData": false
   }
 }

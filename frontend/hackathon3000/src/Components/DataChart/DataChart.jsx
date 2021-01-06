@@ -1,10 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DataChart = ({ data }) => <div>{data.map((depObj) => depObj.code)}</div>;
+const DataChart = ({ data }) => (
+  <div>
+    {data.map((link) => (
+      <img alt="acteur connu" src={link} />
+    ))}
+  </div>
+);
 
 DataChart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.number).isRequired,
+  data: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default DataChart;
