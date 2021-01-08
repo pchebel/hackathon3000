@@ -1,22 +1,29 @@
 from flask import Flask, request
+from flask_cors import CORS, cross_origin
 from datetime import datetime
 import requests
 import time
 import re
 
 app = Flask(__name__)
+cors = CORS(app)
+
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 key = "faeb0760f809a89e7ef621189697c912"
 
 @app.route("/")
+@cross_origin()
 def home():
     return "Hello, Flask"
 
 @app.route('/time')
+@cross_origin()
 def get_current_time():
     return {'time': time.time()}
 
 @app.route("/hello/<name>")
+@cross_origin()
 def hello_there(name):
     now = datetime.now()
     formatted_now = now.strftime("%A, %d %B, %Y at %X")
@@ -34,6 +41,7 @@ def hello_there(name):
     return content
 
 @app.route("/api/actor", methods = ['POST'])
+@cross_origin()
 def post_actor_name():
     name = request.form.get('name')
     actor_id = get_actor_id(name)
@@ -54,6 +62,7 @@ def post_actor_name():
 
 
 def get_actor_id(name):
+    
     name = request.form.get('name')
     name.replace(" ", "%20")
     search_url = f"https://api.themoviedb.org/3/search/person?api_key={key}&language=en-US&query={name}&page=1&include_adult=false"
