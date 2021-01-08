@@ -2,7 +2,7 @@ import { AppBar } from '@material-ui/core';
 import { React, useEffect, useState } from 'react';
 import DataChart from '../DataChart/DataChart';
 
-const API_URL = process.env.URL;
+const API_URL = 'https://hackathon3000.osc-fr1.scalingo.io';
 
 const HomePage = () => {
   const [data, setData] = useState([]);
@@ -22,7 +22,6 @@ const HomePage = () => {
   };
 
   const changeActor = async () => {
-    console.log(API_URL);
     const actorUrl = await searchActor('Jean Dujardin');
     setData([actorUrl]);
   };
