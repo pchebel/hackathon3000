@@ -22,6 +22,7 @@ const HomePage = () => {
   };
 
   const changeActor = async () => {
+    console.log(URL);
     const actorUrl = await searchActor('Jean Dujardin');
     setData([actorUrl]);
   };
