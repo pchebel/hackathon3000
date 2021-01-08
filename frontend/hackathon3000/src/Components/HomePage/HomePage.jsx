@@ -21,14 +21,13 @@ const HomePage = () => {
     return actorUrl;
   };
 
-  const changeActor = async () => {
-    const actorUrl = await searchActor('Jean Dujardin');
-    setData([actorUrl]);
-  };
-
   useEffect(() => {
+    const changeActor = async () => {
+      const actorUrl = await searchActor('Jean Dujardin');
+      setData([actorUrl]);
+    };
     changeActor();
-  });
+  }, []);
 
   return (
     <div>
