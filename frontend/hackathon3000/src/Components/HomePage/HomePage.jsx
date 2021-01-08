@@ -28,7 +28,7 @@ const HomePage = () => {
 
   useEffect(() => {
     changeActor();
-  }, []);
+  });
 
   return (
     <div>
