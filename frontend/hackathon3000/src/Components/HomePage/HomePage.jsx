@@ -2,7 +2,7 @@ import { AppBar } from '@material-ui/core';
 import { React, useEffect, useState } from 'react';
 import DataChart from '../DataChart/DataChart';
 
-const { URL } = process.env;
+const API_URL = process.env.URL;
 
 const HomePage = () => {
   const [data, setData] = useState([]);
@@ -16,13 +16,13 @@ const HomePage = () => {
       redirect: 'follow',
     };
 
-    const actorResponse = await fetch(`${URL}/api/actor`, requestOptions);
+    const actorResponse = await fetch(`${API_URL}/api/actor`, requestOptions);
     const actorUrl = await actorResponse.text();
     return actorUrl;
   };
 
   const changeActor = async () => {
-    console.log(URL);
+    console.log(API_URL);
     const actorUrl = await searchActor('Jean Dujardin');
     setData([actorUrl]);
   };
