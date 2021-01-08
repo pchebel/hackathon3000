@@ -16,17 +16,19 @@ const HomePage = () => {
 
     const actorResponse = await fetch('/api/actor', requestOptions);
     const actorUrl = await actorResponse.text();
-    console.log(actorUrl);
     return actorUrl;
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     // const url = 'https://coronavirusapi-france.now.sh/AllLiveData';
     // const fetchedData = await fetch(url);
     // const objectData = await fetchedData.json();
     // const arr = objectData.allLiveFranceData;
-    const actorUrl = await searchActor('Jean Dujardin');
-    setData([actorUrl]);
+    const changeActor = async () => {
+      const actorUrl = await searchActor('Jean Dujardin');
+      setData([actorUrl]);
+    };
+    changeActor();
   }, []);
 
   return (
