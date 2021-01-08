@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const DataChart = ({ data }) => (
   <div>
     {data.map((link, i) => (
-      <img key={i} alt="acteur connu" src={link} />
+      <img key={'acteur-' + i} alt="acteur connu" src={link} />
     ))}
   </div>
 );
