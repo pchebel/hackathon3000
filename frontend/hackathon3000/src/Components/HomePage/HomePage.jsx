@@ -2,6 +2,8 @@ import { AppBar } from '@material-ui/core';
 import { React, useEffect, useState } from 'react';
 import DataChart from '../DataChart/DataChart';
 
+const { URL } = process.env;
+
 const HomePage = () => {
   const [data, setData] = useState([]);
 
@@ -14,19 +16,18 @@ const HomePage = () => {
       redirect: 'follow',
     };
 
-    const actorResponse = await fetch('/api/actor', requestOptions);
+    const actorResponse = await fetch(`${URL}/api/actor`, requestOptions);
     const actorUrl = await actorResponse.text();
-    console.log(actorUrl);
     return actorUrl;
   };
 
-  useEffect(async () => {
-    // const url = 'https://coronavirusapi-france.now.sh/AllLiveData';
-    // const fetchedData = await fetch(url);
-    // const objectData = await fetchedData.json();
-    // const arr = objectData.allLiveFranceData;
+  const changeActor = async () => {
     const actorUrl = await searchActor('Jean Dujardin');
     setData([actorUrl]);
+  };
+
+  useEffect(() => {
+    changeActor();
   }, []);
 
   return (
