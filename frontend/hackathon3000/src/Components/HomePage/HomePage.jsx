@@ -2,7 +2,7 @@ import { AppBar } from '@material-ui/core';
 import { React, useEffect, useState } from 'react';
 import DataChart from '../DataChart/DataChart';
 
-const { URL } = process.env;
+const API_URL = 'https://hackathon3000.osc-fr1.scalingo.io';
 
 const HomePage = () => {
   const [data, setData] = useState([]);
@@ -16,7 +16,7 @@ const HomePage = () => {
       redirect: 'follow',
     };
 
-    const actorResponse = await fetch(`${URL}/api/actor`, requestOptions);
+    const actorResponse = await fetch(`${API_URL}/api/actor`, requestOptions);
     const actorUrl = await actorResponse.text();
     return actorUrl;
   };
@@ -28,7 +28,7 @@ const HomePage = () => {
 
   useEffect(() => {
     changeActor();
-  }, []);
+  });
 
   return (
     <div>
