@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 const DataChart = ({ data }) => (
   <div>
-    {data.map((link, i) => (
-      <img key={'acteur-' + i} alt="acteur connu" src={link} />
+    {data.map((link) => (
+      <img key={link} alt="acteur connu" src={link} />
     ))}
   </div>
 );
