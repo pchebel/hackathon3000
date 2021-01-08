@@ -68,3 +68,6 @@ def get_actor_id(name):
 
 
     return actor_id
+
+if __name__ == '__main__':
+    app.run()
