@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const DataChart = ({ data }) => (
-  <div>
-    {data.map((link) => (
-      <img key={link} alt="acteur connu" src={link} />
+  <div id="data-chart">
+    {data.map((link, i) => (
+      <div key={link}>
+        <img alt="acteur connu" src={link} />
+        <p>{`Acteur ${i}`}</p>
+      </div>
     ))}
   </div>
 );
