@@ -14,7 +14,10 @@ const HomePage = () => {
       redirect: 'follow',
     };
 
-    const actorResponse = await fetch('/api/actor', requestOptions);
+    const actorResponse = await fetch(
+      'https://hackathon3000.osc-fr1.scalingo.io/api/actor',
+      requestOptions
+    );
     const actorUrl = await actorResponse.text();
     return actorUrl;
   };
