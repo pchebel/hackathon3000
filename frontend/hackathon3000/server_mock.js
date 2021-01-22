@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require("cors");
 const app = express()
 const port = 8000
 
@@ -46,7 +47,7 @@ const getRandomSchedule = () => {
     return {events:events}
 }
 
-
+app.use(cors())
 
 
 app.get('/', (req, res) => {
