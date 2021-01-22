@@ -7,7 +7,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import './Calendar.css';
 import { createEventId } from '../../helper/event-utils';
 
-const Calendar = ({ openAppointment }) => {
+const Calendar = ({ openAppointment, id }) => {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState([]);
 

@@ -7,10 +7,17 @@
   height: 33%;
 }
 
-.disabled {
-  pointer-events: none;
+.grid-item {
+  height: 100%;
+  width: 100%;
 }
 
-.enabled {
+.disabled {
+  pointer-events: none;
+  opacity: 0.8 !important;
+  transition: all 250ms;
+}
+
+enabled {
   pointer-events: auto;
 }
