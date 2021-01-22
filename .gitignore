@@ -10,3 +10,5 @@ backend/env/
 frontend/hackathon3000/.eslintcache
 
 .vscode/
+
+frontend/hackathon3000/debug.log
