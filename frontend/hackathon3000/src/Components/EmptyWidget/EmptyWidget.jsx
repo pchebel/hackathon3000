@@ -10,6 +10,8 @@ import GridContext from '../GridProvider/GridProvider';
 import Calendar from '../Calendar/Calendar';
 import MachineWidget from '../Widgets/MachineWidget';
 import SandwichWidget from '../Widgets/SandwichWidget';
+import NewsFacebook from '../Widgets/NewsFacebook';
+import PostFacebook from '../Widgets/PostFacebook';
 import './EmptyWidget.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,6 +26,8 @@ const map = new Map([
   ['Calendrier', <Calendar />],
   ['Machines', <MachineWidget />],
   ['Sandwich', <SandwichWidget />],
+  ['News Facebook', <NewsFacebook />],
+  ['Post Facebook', <PostFacebook />],
 ]);
 
 export default function EmptyWidget(props) {
@@ -66,6 +70,12 @@ export default function EmptyWidget(props) {
           </ListItem>
           <ListItem button onClick={() => changeItems(props.id, 'Sandwich')}>
             <ListItemText primary="Sandwich" />
+          </ListItem>
+          <ListItem button onClick={() => changeItems(props.id, 'News Facebook')}>
+            <ListItemText primary="News Facebook" />
+          </ListItem>
+          <ListItem button onClick={() => changeItems(props.id, 'Post Facebook')}>
+            <ListItemText primary="Post Facebook" />
           </ListItem>
         </List>
       )}

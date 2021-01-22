@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const HomePage = () => {
+const HomePage = ({ name }) => {
   const { items, moveItem, isDraggable, setIsDraggable } = useContext(GridContext);
   const classes = useStyles();
   const [navBarHeight, setNavBarHeight] = useState(0);
@@ -32,7 +32,7 @@ const HomePage = () => {
       <AppBar position="static">
         <Toolbar ref={navBarRef}>
           <Typography variant="h6" className={classes.title}>
-            Dashboard
+            {`Bonjour ${name} !`}
           </Typography>
           <FormControlLabel
             control={
@@ -45,7 +45,6 @@ const HomePage = () => {
             }
             label="Réarranger"
           />
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
       <Grid navBarHeight={navBarHeight}>
