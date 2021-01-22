@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -8,17 +8,11 @@ import './Calendar.css';
 import { createEventId } from '../../helper/event-utils';
 
 const Calendar = ({ openAppointment }) => {
-  const calendarRef = useRef();
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState([]);
 
-  // useEffect(() => {
-  //   let calendarApi = calendarRef.current.getApi();
-  //   calendarApi.weekNumberCalculation('ISO');
-  // }, []);
-
   const handleEventClick = ({ event }) => {
-    if (confirm(`Are you sure you want to delete the event '${event.title}`)) {
+    if (confirm(`Etes-vous sûr de bien vouloir supprimer l'événement "${event.title}"`)) {
       event.remove();
     }
   };
@@ -28,7 +22,7 @@ const Calendar = ({ openAppointment }) => {
   };
 
   const handleDateSelect = (selectInfo) => {
-    let title = prompt('Please enter a new title for your event');
+    let title = prompt(`Entrez le titre de l'événement s'il vous plaît`);
     let calendarApi = selectInfo.view.calendar;
 
     calendarApi.unselect();
@@ -51,11 +45,9 @@ const Calendar = ({ openAppointment }) => {
   return (
     <div className="calendar-container" style={{}}>
       <FullCalendar
-        ref={calendarRef}
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         headerToolbar={{
-          left: 'prev,next today',
-          center: 'title',
+          left: 'prev,next today title',
           right: 'dayGridMonth,timeGridWeek,timeGridDay',
         }}
         initialView="dayGridMonth"
@@ -63,6 +55,7 @@ const Calendar = ({ openAppointment }) => {
         selectable={true}
         selectMirror={true}
         dayMaxEvents={true}
+        weekNumberCalculation="ISO"
         weekends={weekendsVisible}
         initialEvents={[]}
         select={handleDateSelect}

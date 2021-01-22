@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import DragItem from '../DragItem/DragItem';
+import { Grid, GridImage, GridItem } from '../Grid/Grid';
+import GridContext from '../GridProvider/GridProvider';
 import Calendar from '../Calendar/Calendar';
 
 // import DataChart from '../DataChart/DataChart';
@@ -35,31 +38,33 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HomePage = () => {
+  const { items, moveItem } = useContext(GridContext);
   const classes = useStyles();
-  // const [data, setData] = useState([]);
+  const [navBarHeight, setNavBarHeight] = useState(0);
+  const navBarRef = useRef(null);
 
-  // useEffect(() => {
-  //   const changeActor = async () => {
-  //     const actorUrl = await searchActor('Jean Dujardin');
-  //     setData([actorUrl]);
-  //   };
-  //   changeActor();
-  // }, []);
+  useEffect(() => {
+    setNavBarHeight(navBarRef.current.clientHeight);
+  }, []);
 
   return (
     <div className="app">
       <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
+        <Toolbar ref={navBarRef}>
           <Typography variant="h6" className={classes.title}>
             Dashboard
           </Typography>
+          <Button color="inherit">Réarranger</Button>
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Calendar />
+      <Grid navBarHeight={navBarHeight}>
+        {items.map((item) => (
+          <DragItem key={item.id} id={item.id} onMoveItem={moveItem}>
+            <GridItem>{item.element}</GridItem>
+          </DragItem>
+        ))}
+      </Grid>
     </div>
   );
 };
