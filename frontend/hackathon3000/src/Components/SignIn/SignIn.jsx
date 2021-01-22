@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {useState} from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userHasIdentified } from "../Redux/Actions"
 
 function Copyright() {
@@ -85,17 +85,7 @@ export default function SignIn(props) {
             autoFocus
             onChange = {event => setMail(event.target.value) }
           />
-          {/* <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          /> */}
+
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
@@ -106,7 +96,7 @@ export default function SignIn(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            disabled= {mail == ""}
+            disabled= {mail === ""}
             onClick = {onClickHandler}
           >
             Sign In
