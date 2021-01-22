@@ -52,12 +52,17 @@ const getRandomSchedule = () => {
     return {events:events}
 }
 
+
+
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors())
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    })
 
 .get('/api/machine', (req, res) => {
     res.status(200).json( getRandomMachineState() )
