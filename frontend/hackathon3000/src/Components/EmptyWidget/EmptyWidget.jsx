@@ -30,28 +30,30 @@ const map = new Map([
   ['Post Facebook', <PostFacebook />],
 ]);
 
-export default function EmptyWidget(props) {
+export default function EmptyWidget({ id }) {
   const classes = useStyles();
   const [showChoices, setShowChoices] = useState(false);
   const { items, setItems } = useContext(GridContext);
 
-  const changeItems = (id, name) => {
+  const changeItems = (name) => {
     let newItems = [...items];
-    newItems[id] = { id: items[id].id, element: map.get(name) };
+    newItems[id] = { element: map.get(name), id: items[id].id };
     setItems(newItems);
   };
 
   return (
     <div className={`${classes.root} empty-widget`}>
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.button}
-        startIcon={<Icon>add_circle</Icon>}
-        onClick={() => setShowChoices(!showChoices)}
-      >
-        Ajouter un Widget
-      </Button>
+      {!showChoices && (
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          startIcon={<Icon>add_circle</Icon>}
+          onClick={() => setShowChoices(!showChoices)}
+        >
+          Ajouter un Widget
+        </Button>
+      )}
       {showChoices && (
         <List
           component="nav"
@@ -62,20 +64,23 @@ export default function EmptyWidget(props) {
             </ListSubheader>
           }
         >
-          <ListItem button onClick={() => changeItems(props.id, 'Calendrier')}>
+          <ListItem button onClick={() => changeItems('Calendrier')}>
             <ListItemText primary="Calendrier" />
           </ListItem>
-          <ListItem button onClick={() => changeItems(props.id, 'Machines')}>
+          <ListItem button onClick={() => changeItems('Machines')}>
             <ListItemText primary="Machines" />
           </ListItem>
-          <ListItem button onClick={() => changeItems(props.id, 'Sandwich')}>
+          <ListItem button onClick={() => changeItems('Sandwich')}>
             <ListItemText primary="Sandwich" />
           </ListItem>
-          <ListItem button onClick={() => changeItems(props.id, 'News Facebook')}>
+          <ListItem button onClick={() => changeItems('News Facebook')}>
             <ListItemText primary="News Facebook" />
           </ListItem>
-          <ListItem button onClick={() => changeItems(props.id, 'Post Facebook')}>
+          <ListItem button onClick={() => changeItems('Post Facebook')}>
             <ListItemText primary="Post Facebook" />
+          </ListItem>
+          <ListItem button onClick={() => setShowChoices(!showChoices)}>
+            <ListItemText primary="Ne pas mettre de Widget" />
           </ListItem>
         </List>
       )}

@@ -35,6 +35,7 @@ const DragItem = memo(({ id, onMoveItem, children }) => {
     React.cloneElement(child, {
       forwardedRef: ref,
       style: containerStyle,
+      id,
     })
   );
 });

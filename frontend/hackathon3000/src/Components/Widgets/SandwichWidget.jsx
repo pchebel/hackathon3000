@@ -10,7 +10,7 @@ import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    heigth: '100%',
+    minHeigth: '100%',
     width: '100%',
   },
   statusText: {

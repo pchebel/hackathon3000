@@ -50,7 +50,7 @@ const HomePage = ({ name }) => {
       <Grid navBarHeight={navBarHeight}>
         {items.map((item) => (
           <DragItem key={item.id} id={item.id} onMoveItem={moveItem}>
-            <GridItem>{item.element}</GridItem>
+            <GridItem key={item.id}>{item.element}</GridItem>
           </DragItem>
         ))}
       </Grid>

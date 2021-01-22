@@ -3,13 +3,6 @@ import './Grid.css';
 import styled from 'styled-components';
 import GridContext from '../GridProvider/GridProvider';
 
-// export const Grid = styled.div`
-//   width: 100%;
-//   display: flex;
-//   justify-content: start;
-//   flex-wrap: wrap;
-// `;
-
 export const Grid = ({ navBarHeight, children }) => {
   return (
     <div
@@ -48,7 +41,6 @@ const GridItemWrapper = styled.div`
 
 export const GridItem = ({ forwardedRef, ...props }) => {
   const { isDraggable } = useContext(GridContext);
-
   return (
     <div ref={forwardedRef} className={'grid-item-wrapper'}>
       <div className={`grid-item ${isDraggable ? 'disabled' : 'enabled'}`} {...props}></div>

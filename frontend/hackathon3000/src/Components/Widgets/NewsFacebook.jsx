@@ -6,7 +6,7 @@ const NewsFacebook = () => {
   const [message2, setData2] = useState(null);
   const [message3, setData3] = useState(null);
   const [message4, setData4] = useState(null);
-  const [message5, setData5] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetch(
@@ -17,13 +17,12 @@ const NewsFacebook = () => {
       setData2(parsedData.data[1].message);
       setData3(parsedData.data[2].message);
       setData4(parsedData.data[3].message);
-      setData5(parsedData.data[4].message);
     };
     fetchData();
-    const interval = setInterval(() => {
-      fetchData();
-    }, 5000);
-    return () => clearInterval(interval);
+    // const interval = setInterval(() => {
+    //   fetchData();
+    // }, 30000);
+    //return () => clearInterval(interval);
   }, []);
 
   return (
@@ -32,7 +31,6 @@ const NewsFacebook = () => {
       <SnackbarContent message={message2} />
       <SnackbarContent message={message3} />
       <SnackbarContent message={message4} />
-      <SnackbarContent message={message5} />
     </div>
   );
 };
