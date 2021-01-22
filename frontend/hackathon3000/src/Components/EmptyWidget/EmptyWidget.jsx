@@ -8,6 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import GridContext from '../GridProvider/GridProvider';
 import Calendar from '../Calendar/Calendar';
+import MachineWidget from '../Widgets/MachineWidget';
+import SandwichWidget from '../Widgets/SandwichWidget';
 import './EmptyWidget.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +20,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const map = new Map([['Calendrier', <Calendar />]]);
+const map = new Map([
+  ['Calendrier', <Calendar />],
+  ['Machines', <MachineWidget />],
+  ['Sandwich', <SandwichWidget />],
+]);
 
 export default function EmptyWidget(props) {
   const classes = useStyles();
@@ -54,6 +60,12 @@ export default function EmptyWidget(props) {
         >
           <ListItem button onClick={() => changeItems(props.id, 'Calendrier')}>
             <ListItemText primary="Calendrier" />
+          </ListItem>
+          <ListItem button onClick={() => changeItems(props.id, 'Machines')}>
+            <ListItemText primary="Machines" />
+          </ListItem>
+          <ListItem button onClick={() => changeItems(props.id, 'Sandwich')}>
+            <ListItemText primary="Sandwich" />
           </ListItem>
         </List>
       )}
