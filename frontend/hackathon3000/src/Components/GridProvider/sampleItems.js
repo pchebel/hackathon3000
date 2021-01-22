@@ -4,7 +4,7 @@ import EmptyWidget from '../EmptyWidget/EmptyWidget';
 
 export default [
   {
-    element: <Calendar />,
+    element: <EmptyWidget />,
     id: '8c444080-9e02-4946-9205-ea65ed81a66f',
   },
   {

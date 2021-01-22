@@ -49,22 +49,9 @@ const GridItemWrapper = styled.div`
 export const GridItem = ({ forwardedRef, ...props }) => {
   const { isDraggable } = useContext(GridContext);
 
-  const style = {
-    flex: '0 0 33.3%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'stretch',
-    boxSizing: 'border-box',
-    height: '33%',
-  };
-
   return (
-    <div className={'grid-item-wrapper'}>
-      <div
-        className={`grid-item ${isDraggable ? 'disabled' : 'enabled'}`}
-        ref={forwardedRef}
-        {...props}
-      ></div>
+    <div ref={forwardedRef} className={'grid-item-wrapper'}>
+      <div className={`grid-item ${isDraggable ? 'disabled' : 'enabled'}`} {...props}></div>
     </div>
   );
 };
