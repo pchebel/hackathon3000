@@ -1,14 +1,16 @@
 /* eslint-disable import/no-anonymous-default-export */
 import Calendar from '../Calendar/Calendar';
 import EmptyWidget from '../EmptyWidget/EmptyWidget';
+import SandwichWidget from '../Widgets/SandwichWidget'
+import MachineWidget from '../Widgets/MachineWidget'
 
 export default [
   {
-    element: <EmptyWidget />,
+    element: <MachineWidget />,
     id: '8c444080-9e02-4946-9205-ea65ed81a66f',
   },
   {
-    element: <EmptyWidget />,
+    element: <SandwichWidget />,
     id: '0a62f9fa-6f5c-4b09-8ff0-d2b9169426f9',
   },
   {
