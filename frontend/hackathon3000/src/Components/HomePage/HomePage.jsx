@@ -1,38 +1,60 @@
-import { AppBar } from '@material-ui/core';
-import { React, useEffect, useState } from 'react';
-import DataChart from '../DataChart/DataChart';
+import React, { useState, useRef, useEffect, useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, Button, Switch, FormControlLabel } from '@material-ui/core';
+import DragItem from '../DragItem/DragItem';
+import { Grid, GridItem } from '../Grid/Grid';
+import GridContext from '../GridProvider/GridProvider';
 
-const API_URL = 'https://hackathon3000.osc-fr1.scalingo.io';
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
 const HomePage = () => {
-  const [data, setData] = useState([]);
-
-  const searchActor = async (actorName) => {
-    const formdata = new FormData();
-    formdata.append('name', actorName);
-    const requestOptions = {
-      method: 'POST',
-      body: formdata,
-      redirect: 'follow',
-    };
-
-    const actorResponse = await fetch(`${API_URL}/api/actor`, requestOptions);
-    const actorUrl = await actorResponse.text();
-    return actorUrl;
-  };
+  const { items, moveItem, isDraggable, setIsDraggable } = useContext(GridContext);
+  const classes = useStyles();
+  const [navBarHeight, setNavBarHeight] = useState(0);
+  const navBarRef = useRef(null);
 
   useEffect(() => {
-    const changeActor = async () => {
-      const actorUrl = await searchActor('Jean Dujardin');
-      setData([actorUrl]);
-    };
-    changeActor();
+    setNavBarHeight(navBarRef.current.clientHeight);
   }, []);
 
   return (
-    <div>
-      <AppBar position="static">Home Page!!</AppBar>
-      <DataChart data={data} />
+    <div className="app">
+      <AppBar position="static">
+        <Toolbar ref={navBarRef}>
+          <Typography variant="h6" className={classes.title}>
+            Dashboard
+          </Typography>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isDraggable}
+                onChange={() => setIsDraggable(!isDraggable)}
+                name="rearranger"
+                color="secondary"
+              />
+            }
+            label="Réarranger"
+          />
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+      <Grid navBarHeight={navBarHeight}>
+        {items.map((item) => (
+          <DragItem key={item.id} id={item.id} onMoveItem={moveItem}>
+            <GridItem>{item.element}</GridItem>
+          </DragItem>
+        ))}
+      </Grid>
     </div>
   );
 };

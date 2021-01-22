@@ -2,19 +2,25 @@
 /* eslint-disable react/jsx-filename-extension */
 
 import React from 'react';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
+import { GridProvider } from './Components/GridProvider/GridProvider';
+import './index.css';
 import {Provider} from "react-redux";
 import store from './Components/Redux/Store'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-        <App />
-    </Provider>
-  </React.StrictMode>,
-
+  <DndProvider backend={HTML5Backend}>
+        <Provider store={store}>
+            <GridProvider>
+                <App />
+            </GridProvider>
+        </Provider>
+  </DndProvider>,
+    
+    
   document.getElementById('root')
 );
 
