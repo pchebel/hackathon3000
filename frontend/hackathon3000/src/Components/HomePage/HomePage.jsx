@@ -1,29 +1,9 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import { AppBar, Toolbar, Typography, Button, Switch, FormControlLabel } from '@material-ui/core';
 import DragItem from '../DragItem/DragItem';
-import { Grid, GridImage, GridItem } from '../Grid/Grid';
+import { Grid, GridItem } from '../Grid/Grid';
 import GridContext from '../GridProvider/GridProvider';
-import Calendar from '../Calendar/Calendar';
-
-// import DataChart from '../DataChart/DataChart';
-
-// const API_URL = 'https://hackathon3000.osc-fr1.scalingo.io';
-
-// const searchActor = async (actorName) => {
-//   const formdata = new FormData();
-//   formdata.append('name', actorName);
-//   const requestOptions = {
-//     method: 'POST',
-//     body: formdata,
-//     redirect: 'follow',
-//   };
-
-//   const actorResponse = await fetch(`${API_URL}/api/actor`, requestOptions);
-//   const actorUrl = await actorResponse.text();
-//   return actorUrl;
-// };
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const HomePage = () => {
-  const { items, moveItem } = useContext(GridContext);
+  const { items, moveItem, isDraggable, setIsDraggable } = useContext(GridContext);
   const classes = useStyles();
   const [navBarHeight, setNavBarHeight] = useState(0);
   const navBarRef = useRef(null);
@@ -54,7 +34,17 @@ const HomePage = () => {
           <Typography variant="h6" className={classes.title}>
             Dashboard
           </Typography>
-          <Button color="inherit">Réarranger</Button>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={isDraggable}
+                onChange={() => setIsDraggable(!isDraggable)}
+                name="rearranger"
+                color="secondary"
+              />
+            }
+            label="Réarranger"
+          />
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
