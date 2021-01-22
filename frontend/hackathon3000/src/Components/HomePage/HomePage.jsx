@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import Calendar from '../Calendar/Calendar';
+import NewsFacebook from '../NewsFacebook/NewsFacebook';
+import PostFacebook from '../PostFacebook/PostFacebook';
 
 // import DataChart from '../DataChart/DataChart';
 
@@ -59,6 +61,7 @@ const HomePage = () => {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
+      <PostFacebook/>
       <Calendar />
     </div>
   );
