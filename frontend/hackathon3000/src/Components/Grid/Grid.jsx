@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Grid.css';
 import styled from 'styled-components';
+import GridContext from '../GridProvider/GridProvider';
 
 // export const Grid = styled.div`
 //   width: 100%;
@@ -45,6 +46,25 @@ const GridItemWrapper = styled.div`
   height: 33%;
 `;
 
-export const GridItem = ({ forwardedRef, ...props }) => (
-  <GridItemWrapper ref={forwardedRef} {...props} />
-);
+export const GridItem = ({ forwardedRef, ...props }) => {
+  const { isDraggable } = useContext(GridContext);
+
+  const style = {
+    flex: '0 0 33.3%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'stretch',
+    boxSizing: 'border-box',
+    height: '33%',
+  };
+
+  return (
+    <div className={'grid-item-wrapper'}>
+      <div
+        className={`grid-item ${isDraggable ? 'disabled' : 'enabled'}`}
+        ref={forwardedRef}
+        {...props}
+      ></div>
+    </div>
+  );
+};

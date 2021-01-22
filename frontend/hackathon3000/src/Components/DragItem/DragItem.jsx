@@ -1,8 +1,10 @@
-import React, { memo, useRef } from 'react';
+import React, { memo, useContext, useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import GridContext from '../GridProvider/GridProvider';
 
 const DragItem = memo(({ id, onMoveItem, children }) => {
   const ref = useRef(null);
+  const { isDraggable } = useContext(GridContext);
 
   const [{ isDragging }, connectDrag] = useDrag({
     item: { id, type: 'IMG' },
@@ -11,6 +13,7 @@ const DragItem = memo(({ id, onMoveItem, children }) => {
         isDragging: monitor.isDragging(),
       };
     },
+    canDrag: (monitor) => isDraggable,
   });
 
   const [, connectDrop] = useDrop({

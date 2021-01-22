@@ -28,12 +28,20 @@ export class GridProvider extends Component {
       items: sampleItems,
       moveItem: this.moveItem,
       setItems: this.setItems,
+      isDraggable: false,
+      setIsDraggable: this.setIsDraggable,
     };
+  }
+
+  componentDidMount() {
+    // Pour aller chercher les préférences des utilisateurs sur la disposition
   }
 
   render() {
     return <GridContext.Provider value={this.state}>{this.props.children}</GridContext.Provider>;
   }
+
+  setIsDraggable = (isDraggable) => this.setState({ isDraggable });
 
   setItems = (items) => this.setState({ items });
 
