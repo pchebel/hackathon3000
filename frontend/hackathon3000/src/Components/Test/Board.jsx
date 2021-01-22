@@ -3,11 +3,16 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles';
+import MachineWidget from '../Widgets/MachineWidget';
 
 const useStyle = makeStyles ( {
 
     container: {
         height : "100vh",
+    },
+
+    item: {
+        height : "25vh"
     },
 
     paper: {
@@ -22,7 +27,10 @@ const useStyle = makeStyles ( {
 
 const Board = () => {
     const classes = useStyle();
-    const gridy = [...Array(16).keys()];
+    let gridy = [...Array(16).keys()];
+    gridy.shift()
+
+
 
 
     return (
@@ -30,6 +38,10 @@ const Board = () => {
         <Container className= {classes.container} maxWidth = {false}>
             {console.log("grydy")}
             <Grid container  spacing = {0} >
+
+            <Grid className = {classes.item} item xs ={12} md = {12} lg = {3}> 
+                <MachineWidget/>
+            </Grid>
             
             {gridy.map(x => {
 
