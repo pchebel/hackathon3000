@@ -34,6 +34,8 @@ const useStyles = makeStyles({
 
 const MachineWidget = () => {
     const classes = useStyles();
+
+    const currentState = [{"nom":"machine_0","occupe":false},{"nom":"machine_1","occupe":true},{"nom":"machine_2","occupe":true},{"nom":"machine_3","occupe":true}];
   
     return (
       <Card className={classes.root}>
@@ -43,16 +45,13 @@ const MachineWidget = () => {
             Machines à laver
           </Typography>
 
+          {currentState.map(machine => { return ( 
+                <Typography className = {classes.statusText} variant="body2" component="p">
+                        {machine.nom}
+                        <FiberManualRecordIcon className = {machine.occupe ? classes.roundUnavailable : classes.roundAvailable}/>
+                </Typography>
+          )})}
 
-          <Typography className = {classes.statusText} variant="body2" component="p">
-            Machine 1
-            <FiberManualRecordIcon className = {classes.roundAvailable}/>
-          </Typography>
-
-          <Typography className = {classes.statusText} variant="body2" component="p">
-            Machine 2
-            <FiberManualRecordIcon className = {classes.roundUnavailable}/>
-          </Typography>
 
         </CardContent>
         <CardActions>
