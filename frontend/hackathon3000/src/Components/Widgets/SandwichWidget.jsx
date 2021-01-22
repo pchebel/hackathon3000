@@ -34,17 +34,17 @@ const useStyles = makeStyles({
 });
 
 
-const MachineWidget = () => {
+const SandwichWidget = () => {
     const classes = useStyles();
-    const [machines,setMachines] = useState([]);
+    const [sandwiches,setSandwiches] = useState([]);
 
     // const currentState = [{"nom":"machine_0","occupe":false},{"nom":"machine_1","occupe":true},{"nom":"machine_2","occupe":true},{"nom":"machine_3","occupe":true}];
   
     useEffect( () => {
 
-        fetch( 'http://localhost:8000/api/machine' )
+        fetch( 'http://localhost:8000/api/sandwich' )
         .then(res => res.json())
-        .then(machines => {setMachines(machines)})
+        .then(machines => {setSandwiches(machines)})
 
 
     }, [])
@@ -55,13 +55,13 @@ const MachineWidget = () => {
         <CardContent>
 
           <Typography variant="h5" component="h2">
-            Machines à laver
+            Sandwich de la cafet
           </Typography>
 
-          {machines.map(machine => { return ( 
+          {sandwiches.map(machine => { return ( 
                 <Typography className = {classes.statusText} variant="body2" component="p">
                         {machine.nom}
-                        <FiberManualRecordIcon className = {machine.occupe ? classes.roundUnavailable : classes.roundAvailable}/>
+                        <FiberManualRecordIcon className = {machine.disponible ? classes.roundAvailable : classes.roundUnavailable}/>
                 </Typography>
           )})}
 
@@ -75,4 +75,4 @@ const MachineWidget = () => {
 };
 
 
-export default MachineWidget;
+export default SandwichWidget;

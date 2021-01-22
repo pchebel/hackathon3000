@@ -6,6 +6,7 @@ const port = 8000
 const n_machines = 4
 const N_event = 5
 const N_day = 10
+const sandw = ["Sandwich au thon", "Sandwich crudité", "Sandwich bon", "Panini"]
 const matieres = ["APSA","Haskell", "Hackathon", "Scala", "Service", "Intersemestre"]
 const lieu = ["La lune", "Zoom", "P-314", "E-272", "B02-150" ]
 const today_date_8 = new Date(2018, 1, 20, 8, 0, 0)
@@ -22,6 +23,10 @@ const getRandomMachineState = () => {
     return [...Array(n_machines).keys()].map( x =>  {
         return { nom:`machine_${x}`, occupe: randomState() }
     });
+}
+
+const getRandomSandwichState = () => {
+    return sandw.map( sandwich => { return{nom:sandwich, disponible: randomState() }})
 }
 
 const getRandomSchedule = () => {
@@ -56,6 +61,10 @@ app.get('/', (req, res) => {
 
 .get('/api/machine', (req, res) => {
     res.status(200).json( getRandomMachineState() )
+})
+
+.get('/api/sandwich', (req,res) => {
+    res.status(200).json( getRandomSandwichState() )
 })
 
 .get('/api/calendrier', (req,res) => {

@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import { makeStyles } from '@material-ui/core/styles';
 import MachineWidget from '../Widgets/MachineWidget';
+import SandwichWidget from '../Widgets/SandwichWidget'
 
 const useStyle = makeStyles ( {
 
@@ -29,6 +30,7 @@ const Board = () => {
     const classes = useStyle();
     let gridy = [...Array(16).keys()];
     gridy.shift()
+    gridy.shift()
 
 
 
@@ -41,6 +43,10 @@ const Board = () => {
 
             <Grid className = {classes.item} item xs ={12} md = {12} lg = {3}> 
                 <MachineWidget/>
+            </Grid>
+
+            <Grid className = {classes.item} item xs ={12} md = {12} lg = {3}> 
+                <SandwichWidget/>
             </Grid>
             
             {gridy.map(x => {
